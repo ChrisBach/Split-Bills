@@ -1,0 +1,84 @@
+<StartWindow>:
+
+    FloatLayout:
+        Label:
+            text: "Enter the number of people:"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        TextInput:
+            id: num_people_input
+            pos_hint: {"x":0.3, "top":0.8}
+            size_hint: 0.4, 0.12
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            text: "Next"
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release: 
+                root.next_button()
+                root.manager.transition.direction = "left"
+
+
+
+
+<InputWindow>:
+    input_grid: input_grid
+    num_people_input: num_people_input
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        #font_size: (root.width**2 + root.height**2) / 14**4
+
+        GridLayout:
+            id: input_grid
+            cols: 4
+            spacing: 15
+            padding: [40, 30, 60, 40]  # Set padding for the entire grid
+
+            Label:
+                text: 'Number of People:'
+                font_size: 20
+
+            TextInput:
+                id: num_people_input
+                multiline: False
+                hint_text: 'Enter number'
+                font_size: 20
+
+            
+
+        Button:
+            text: 'Submit'
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_press: root.calculate_shares(self)
+
+
+
+
+<ResultWindow>:
+
+    result_label: result_label  # Make sure this line is present
+    BoxLayout:
+        orientation: "vertical"
+
+        Label:
+            id: result_label
+            text: "Here is the result primates !!!"
+            font_size: 24
+            text_size: (root.width, None) # Allow text wrapping
+            pos_hint: {"x":0.4, "top":1}
+
+        #Button:
+            #text: 'OK'
+            #size_hint: (None, None)
+            #size: (100, 50)
+            #pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            #on_press: root.return_to_start()
